@@ -1,23 +1,24 @@
 # End-to-End Tests 
 
-This is an example Google page test script. The tests has been implemented using Javascript and run using [TestCafe](https://devexpress.github.io/testcafe/), a nodejs framework.
+This is a Lenken test script. The tests has been implemented using Javascript and run using [TestCafe](https://devexpress.github.io/testcafe/), a nodejs framework.
 
 # Setup
 Clone the repository
 ```
     git clone https://github.com/layodi/qacoaching.git
 ```
-Checkout to the `end-to-end`branch
+Checkout to the `lenken-testing` branch
 ```
     git checkout -b end-to-end
 ```
-Install `testcafe` package
+Install `testcafe` and `dotenv` package
 ```
    npm install testcafe
+   npm install dotenv
 ```
 
 # Running the test
 Run the test using this command
 ```
-    testcafe chrome openPage.js
+    testcafe chrome testUser.js
 ```
