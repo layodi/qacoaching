@@ -1,4 +1,4 @@
-# End-to-End Tests 
+# End-to-End Tests
 
 This is a Lenken test script. The tests has been implemented using Javascript and run using [TestCafe](https://devexpress.github.io/testcafe/), a nodejs framework.
 
@@ -9,11 +9,11 @@ Clone the repository
 ```
 Checkout to the `lenken-testing` branch
 ```
-    git checkout -b end-to-end
+    git checkout lenken-testing
 ```
 Install `testcafe` and `dotenv` package
 ```
-   npm install testcafe
+   npm install -g testcafe
    npm install dotenv
 ```
 
