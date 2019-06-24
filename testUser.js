@@ -3,7 +3,7 @@ require("dotenv").config();
 import { ClientFunction, Selector } from 'testcafe';
 
 const origin = 'https://lenken.andela.com';
-const getLocation = ClientFunction(() => document.location.href); 
+const getLocation = ClientFunction(() => document.location.href);
 
 fixture `Lenken Test Suite (${origin})`
   .page`${origin}`
@@ -19,9 +19,10 @@ const login = (t, username, password) => {
     .wait(500)
     .click(Selector("#wrapper > div > a > img"))
     .typeText(Selector("#identifierId"), username, { replace: true })
-    .click(Selector("#identifierNext > content > span"))
+    .click(Selector("span").withText('Next'))
+    .typeText('input[name="username"]', username, { replace: true })
     .typeText('input[type="password"]', password, { replace: true })
-    .click(Selector("#passwordNext > content > span"))
+    .click(Selector('input[type="submit"]'))
     .wait(10000);
 };
 
@@ -36,6 +37,7 @@ test('test_1 Request mentor', async t => {
   await t.expect(getLocation()).contains("/request-pool");
 
   await t
+    .setTestSpeed(0.5)
     // Test user being able to request for a mentor
     .click(Selector("#request-button"))
     .click(Selector("#mentor"))
@@ -47,6 +49,7 @@ test('test_1 Request mentor', async t => {
     .expect(Selector('body > app-root > app-alert > div > app-confirmation-alert > div > div.alert').exists).ok()
 
   await t
+    .setTestSpeed(0.5)
     // Test confirmation modal
     .click(Selector('body > app-root > app-alert > div > app-confirmation-alert > div > div.alert > div.footer > div > button.blue-button'))
     .expect(Selector('body > app-root > app-request-details > div.request-modal > div.request-body > p:nth-child(2)').innerText).contains('Requested by')
@@ -86,6 +89,7 @@ test('test_2 Request mentee', async t => {
   await t.expect(getLocation()).contains("/request-pool");
 
   await t
+    .setTestSpeed(0.5)
     // Test user being able to request for a mentor
     .click(Selector("#request-button"))
     .click(Selector("#mentee"))
@@ -97,6 +101,7 @@ test('test_2 Request mentee', async t => {
     .expect(Selector('body > app-root > app-alert > div > app-confirmation-alert > div > div.alert').exists).ok()
 
   await t
+    .setTestSpeed(0.5)
     // Test confirmation modal
     .click(Selector('body > app-root > app-alert > div > app-confirmation-alert > div > div.alert > div.footer > div > button.blue-button'))
     .expect(Selector('body > app-root > app-request-details > div.request-modal > div.request-body > p:nth-child(2)').innerText).contains('Requested by')
